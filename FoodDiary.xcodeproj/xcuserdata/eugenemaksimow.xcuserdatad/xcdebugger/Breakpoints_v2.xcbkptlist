@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6FB895D7-1593-4895-893E-4348AB3DDF87"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6757F0B-94DE-4ED7-9A6F-82973F580EAF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFB12CB6-3F13-4418-A4E4-2214832D09B3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34297EB7-BB5B-4E9A-AF61-55E156C95B5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7354A220-058B-488B-954D-4D137A14C99F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A738B09B-73AC-4E00-83CD-C5C4F4EA74CC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64CD7DB1-3EB7-4A32-B865-B752377D572E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "didTapSaveButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A428C6EF-46B9-4242-85F9-6A5A3A0FDFF7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "didTapSaveButton(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A428C6EF-46B9-4242-85F9-6A5A3A0FDFF7 - 36f3d986f174e690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.ProductAmountViewController.didTapSaveButton(__C.UIButton) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "A428C6EF-46B9-4242-85F9-6A5A3A0FDFF7 - 36f3d986f174e690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.ProductAmountViewController.didTapSaveButton(__C.UIButton) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  uuid = "A428C6EF-46B9-4242-85F9-6A5A3A0FDFF7 - 36f3d986f174e690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.ProductAmountViewController.didTapSaveButton(__C.UIButton) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "472">
+               </Location>
+               <Location
+                  uuid = "A428C6EF-46B9-4242-85F9-6A5A3A0FDFF7 - 79ea0461efe1cb96"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.ProductAmountViewController.didTapSaveButton(__C.UIButton) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/Desktop%20-%20Eugene%E2%80%99s%20MacBook%20Air/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/ProductAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "472">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9670B125-17BA-40CB-91DA-F829B7BEDB3C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/Modules/DishPickerModule/View/DishAmountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE292E4F-432B-4882-BC58-F6B2650039F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/Modules/DishPickerModule/View/DishAmountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE292E4F-432B-4882-BC58-F6B2650039F9 - fe6680e0a8ad94c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.DishAmountViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/Desktop%20-%20Eugene%E2%80%99s%20MacBook%20Air/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/DishAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "CE292E4F-432B-4882-BC58-F6B2650039F9 - fe6680e0a8ad954e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodDiary.DishAmountViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "FoodDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugenemaksimow/Desktop/Desktop%20-%20Eugene%E2%80%99s%20MacBook%20Air/diplom/project/FoodDiary/FoodDiary/Modules/DishPickerModule/View/DishAmountViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41F8E2E0-26F9-4174-AF76-A39B18069805"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodDiary/Modules/DishAmountModule/View/DishAmountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "didTapSaveButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

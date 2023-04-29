@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F5027f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Dishes" representedClassName=".Dishes" syncable="YES" codeGenerationType="class">
+        <attribute name="cals" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="carbohydrates" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fats" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="protein" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="dishes_dishesmeals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DishesMeals" inverseName="dishesmeals_dishes" inverseEntity="DishesMeals"/>
+    </entity>
+    <entity name="DishesMeals" representedClassName=".DishesMeals" syncable="YES" codeGenerationType="class">
+        <attribute name="dishId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mass" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mealId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="dishesmeals_dishes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dishes" inverseName="dishes_dishesmeals" inverseEntity="Dishes"/>
+        <relationship name="dishesmeals_meals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meals" inverseName="meals_dishesmeals" inverseEntity="Meals"/>
+    </entity>
+    <entity name="Meals" representedClassName=".Meals" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="meals_dishesmeals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DishesMeals" inverseName="dishesmeals_meals" inverseEntity="DishesMeals"/>
+        <relationship name="meals_queue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Queue" inverseName="queue_meals" inverseEntity="Queue"/>
+    </entity>
+    <entity name="Queue" representedClassName=".Queue" syncable="YES" codeGenerationType="class">
+        <attribute name="mealName" optional="YES" attributeType="String"/>
+        <attribute name="queue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="queue_meals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Meals" inverseName="meals_queue" inverseEntity="Meals"/>
+    </entity>
+</model>

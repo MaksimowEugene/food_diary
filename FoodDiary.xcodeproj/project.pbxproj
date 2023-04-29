@@ -7,25 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E58C00ED29C234DF0021FAEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C00EC29C234DF0021FAEB /* AppDelegate.swift */; };
-		E58C00EF29C234DF0021FAEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C00EE29C234DF0021FAEB /* SceneDelegate.swift */; };
-		E58C00F129C234DF0021FAEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C00F029C234DF0021FAEB /* ViewController.swift */; };
-		E58C00F429C234DF0021FAEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E58C00F229C234DF0021FAEB /* Main.storyboard */; };
-		E58C00F729C234DF0021FAEB /* FoodDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E58C00F529C234DF0021FAEB /* FoodDiary.xcdatamodeld */; };
-		E58C00F929C234E00021FAEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58C00F829C234E00021FAEB /* Assets.xcassets */; };
+		E50C1FCF29CC3330001587FA /* dishes.json in Resources */ = {isa = PBXBuildFile; fileRef = E50C1FCE29CC3330001587FA /* dishes.json */; };
+		E53FBAAB29F917F100D6FC44 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FBAAA29F917F100D6FC44 /* CalendarView.swift */; };
+		E53FBAAD29F9180500D6FC44 /* DayStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FBAAC29F9180500D6FC44 /* DayStatsView.swift */; };
+		E5438ED929D6EA2A00C11BD8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438ED829D6EA2A00C11BD8 /* Router.swift */; };
+		E5438EDC29D6EA4200C11BD8 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438EDB29D6EA4200C11BD8 /* Assembly.swift */; };
+		E5438EE029D7174E00C11BD8 /* DayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438EDF29D7174E00C11BD8 /* DayPresenter.swift */; };
+		E5438EE229D752A800C11BD8 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438EE129D752A700C11BD8 /* SettingsPresenter.swift */; };
+		E5438EE429D7791D00C11BD8 /* DishesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438EE329D7791D00C11BD8 /* DishesPresenter.swift */; };
+		E551077529D0467300BBB6EE /* DishAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A53C3A29C644D50056EDC6 /* DishAmountViewController.swift */; };
+		E551077629D0467300BBB6EE /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C010B29C235BC0021FAEB /* DishesViewController.swift */; };
+		E551077729D0467300BBB6EE /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C010F29C235F90021FAEB /* DayViewController.swift */; };
+		E551077829D0467300BBB6EE /* NewDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A53C1629C450000056EDC6 /* NewDishViewController.swift */; };
+		E551077929D0467300BBB6EE /* DishChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A53C1429C44B4D0056EDC6 /* DishChooserViewController.swift */; };
+		E551077A29D0468800BBB6EE /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C011129C236400021FAEB /* UIImage.swift */; };
+		E551077C29D0468800BBB6EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C00EC29C234DF0021FAEB /* AppDelegate.swift */; };
+		E551077E29D0468800BBB6EE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C010929C235840021FAEB /* SettingsViewController.swift */; };
+		E551077F29D046A000BBB6EE /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58C010729C235660021FAEB /* Dish.swift */; };
+		E551078129D0470300BBB6EE /* FoodDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E50C1FC929CC2D85001587FA /* FoodDiary.xcdatamodeld */; };
+		E574921B29DCAB9A0014FC00 /* NameDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574921A29DCAB9A0014FC00 /* NameDetailCell.swift */; };
+		E574921D29DCABA90014FC00 /* NameDetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574921C29DCABA90014FC00 /* NameDetailCellModel.swift */; };
+		E574921F29DCAE710014FC00 /* ConfigurableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574921E29DCAE710014FC00 /* ConfigurableViewProtocol.swift */; };
+		E574922129DD86390014FC00 /* DishAmountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574922029DD86390014FC00 /* DishAmountPresenter.swift */; };
+		E574922329DD96BC0014FC00 /* DishChooserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574922229DD96BC0014FC00 /* DishChooserPresenter.swift */; };
+		E574922529DDA27F0014FC00 /* DishAmountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574922429DDA27F0014FC00 /* DishAmountModel.swift */; };
 		E58C00FC29C234E00021FAEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E58C00FA29C234E00021FAEB /* LaunchScreen.storyboard */; };
+		E5ACD3FC29F8F82E005C7698 /* LineDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ACD3FB29F8F82E005C7698 /* LineDiagram.swift */; };
+		E5BC9D7429E16E9B00E048C2 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC9D7329E16E9B00E048C2 /* ProfileSettingViewController.swift */; };
+		E5BC9D7629E16EB700E048C2 /* MealSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC9D7529E16EB700E048C2 /* MealSettingViewController.swift */; };
+		E5D0730729D34A2200C26154 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D0730629D34A2200C26154 /* CoreDataStack.swift */; };
+		E5D6FF4429E7EE6000881AA4 /* NewDishPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D6FF4329E7EE6000881AA4 /* NewDishPresenter.swift */; };
+		E5D6FF4629E8170700881AA4 /* NewDishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D6FF4529E8170700881AA4 /* NewDishModel.swift */; };
+		E5E6DEE229F578AF00E0A15C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6DEE129F578AF00E0A15C /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E50C1FCA29CC2D85001587FA /* FoodDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodDiary.xcdatamodel; sourceTree = "<group>"; };
+		E50C1FCE29CC3330001587FA /* dishes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dishes.json; sourceTree = "<group>"; };
+		E53FBAAA29F917F100D6FC44 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		E53FBAAC29F9180500D6FC44 /* DayStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayStatsView.swift; sourceTree = "<group>"; };
+		E5438ED829D6EA2A00C11BD8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E5438EDB29D6EA4200C11BD8 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		E5438EDF29D7174E00C11BD8 /* DayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPresenter.swift; sourceTree = "<group>"; };
+		E5438EE129D752A700C11BD8 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		E5438EE329D7791D00C11BD8 /* DishesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesPresenter.swift; sourceTree = "<group>"; };
+		E574921A29DCAB9A0014FC00 /* NameDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDetailCell.swift; sourceTree = "<group>"; };
+		E574921C29DCABA90014FC00 /* NameDetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDetailCellModel.swift; sourceTree = "<group>"; };
+		E574921E29DCAE710014FC00 /* ConfigurableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableViewProtocol.swift; sourceTree = "<group>"; };
+		E574922029DD86390014FC00 /* DishAmountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishAmountPresenter.swift; sourceTree = "<group>"; };
+		E574922229DD96BC0014FC00 /* DishChooserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishChooserPresenter.swift; sourceTree = "<group>"; };
+		E574922429DDA27F0014FC00 /* DishAmountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishAmountModel.swift; sourceTree = "<group>"; };
 		E58C00E929C234DF0021FAEB /* FoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58C00EC29C234DF0021FAEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E58C00EE29C234DF0021FAEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E58C00F029C234DF0021FAEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E58C00F329C234DF0021FAEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E58C00F629C234DF0021FAEB /* FoodDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodDiary.xcdatamodel; sourceTree = "<group>"; };
-		E58C00F829C234E00021FAEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E58C00FB29C234E00021FAEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E58C00FD29C234E00021FAEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E58C010729C235660021FAEB /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		E58C010929C235840021FAEB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E58C010B29C235BC0021FAEB /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
+		E58C010F29C235F90021FAEB /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
+		E58C011129C236400021FAEB /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		E5A53C1429C44B4D0056EDC6 /* DishChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishChooserViewController.swift; sourceTree = "<group>"; };
+		E5A53C1629C450000056EDC6 /* NewDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDishViewController.swift; sourceTree = "<group>"; };
+		E5A53C3829C59A990056EDC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5A53C3929C59A9E0056EDC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5A53C3A29C644D50056EDC6 /* DishAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishAmountViewController.swift; sourceTree = "<group>"; };
+		E5ACD3FB29F8F82E005C7698 /* LineDiagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDiagram.swift; sourceTree = "<group>"; };
+		E5BC9D7329E16E9B00E048C2 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		E5BC9D7529E16EB700E048C2 /* MealSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSettingViewController.swift; sourceTree = "<group>"; };
+		E5D0730629D34A2200C26154 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E5D6FF4329E7EE6000881AA4 /* NewDishPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDishPresenter.swift; sourceTree = "<group>"; };
+		E5D6FF4529E8170700881AA4 /* NewDishModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDishModel.swift; sourceTree = "<group>"; };
+		E5E6DEE129F578AF00E0A15C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,10 +90,278 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E5438EB429D6DBB300C11BD8 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E50C1FCE29CC3330001587FA /* dishes.json */,
+				E5D0730629D34A2200C26154 /* CoreDataStack.swift */,
+				E50C1FC929CC2D85001587FA /* FoodDiary.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		E5438EB529D6DC0400C11BD8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E58C00EC29C234DF0021FAEB /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E5438EB929D6DE2300C11BD8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5A53C3929C59A9E0056EDC6 /* Assets.xcassets */,
+				E5A53C3829C59A990056EDC6 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5438EBA29D6DE7500C11BD8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E5438ED829D6EA2A00C11BD8 /* Router.swift */,
+				E5438EDB29D6EA4200C11BD8 /* Assembly.swift */,
+				E5438ECF29D6E0CF00C11BD8 /* DishAmountModule */,
+				E5438ECB29D6DF8D00C11BD8 /* DishChooserModule */,
+				E5438EC729D6DF4700C11BD8 /* NewDishModule */,
+				E5438EC329D6DEFD00C11BD8 /* DishesModule */,
+				E5438EBC29D6DEAB00C11BD8 /* SettingsModule */,
+				E5438EBB29D6DE7D00C11BD8 /* CalendarModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E5438EBB29D6DE7D00C11BD8 /* CalendarModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EC229D6DEF700C11BD8 /* Presenter */,
+				E5438EC129D6DEF200C11BD8 /* Model */,
+				E5438EC029D6DEED00C11BD8 /* View */,
+			);
+			path = CalendarModule;
+			sourceTree = "<group>";
+		};
+		E5438EBC29D6DEAB00C11BD8 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EBF29D6DECE00C11BD8 /* View */,
+				E5438EBE29D6DEC500C11BD8 /* Model */,
+				E5438EBD29D6DEB600C11BD8 /* Presenter */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		E5438EBD29D6DEB600C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EE129D752A700C11BD8 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E5438EBE29D6DEC500C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438EBF29D6DECE00C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E58C010929C235840021FAEB /* SettingsViewController.swift */,
+				E5BC9D7329E16E9B00E048C2 /* ProfileSettingViewController.swift */,
+				E5BC9D7529E16EB700E048C2 /* MealSettingViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438EC029D6DEED00C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E58C010F29C235F90021FAEB /* DayViewController.swift */,
+				E53FBAAA29F917F100D6FC44 /* CalendarView.swift */,
+				E53FBAAC29F9180500D6FC44 /* DayStatsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438EC129D6DEF200C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438EC229D6DEF700C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EDF29D7174E00C11BD8 /* DayPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E5438EC329D6DEFD00C11BD8 /* DishesModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EC629D6DF2C00C11BD8 /* Presenter */,
+				E5438EC529D6DF2800C11BD8 /* Model */,
+				E5438EC429D6DF2300C11BD8 /* View */,
+			);
+			path = DishesModule;
+			sourceTree = "<group>";
+		};
+		E5438EC429D6DF2300C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E58C010B29C235BC0021FAEB /* DishesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438EC529D6DF2800C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E58C010729C235660021FAEB /* Dish.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438EC629D6DF2C00C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E5438EE329D7791D00C11BD8 /* DishesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E5438EC729D6DF4700C11BD8 /* NewDishModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438ECA29D6DF6700C11BD8 /* View */,
+				E5438EC929D6DF6100C11BD8 /* Presenter */,
+				E5438EC829D6DF5900C11BD8 /* Model */,
+			);
+			path = NewDishModule;
+			sourceTree = "<group>";
+		};
+		E5438EC829D6DF5900C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5D6FF4529E8170700881AA4 /* NewDishModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438EC929D6DF6100C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E5D6FF4329E7EE6000881AA4 /* NewDishPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E5438ECA29D6DF6700C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5A53C1629C450000056EDC6 /* NewDishViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438ECB29D6DF8D00C11BD8 /* DishChooserModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438ECE29D6DFD800C11BD8 /* Presenter */,
+				E5438ECD29D6DFD000C11BD8 /* View */,
+				E5438ECC29D6DFCA00C11BD8 /* Model */,
+			);
+			path = DishChooserModule;
+			sourceTree = "<group>";
+		};
+		E5438ECC29D6DFCA00C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438ECD29D6DFD000C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5A53C1429C44B4D0056EDC6 /* DishChooserViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438ECE29D6DFD800C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E574922229DD96BC0014FC00 /* DishChooserPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E5438ECF29D6E0CF00C11BD8 /* DishAmountModule */ = {
+			isa = PBXGroup;
+			children = (
+				E5438ED229D6E0EC00C11BD8 /* Presenter */,
+				E5438ED129D6E0E800C11BD8 /* View */,
+				E5438ED029D6E0E100C11BD8 /* Model */,
+			);
+			path = DishAmountModule;
+			sourceTree = "<group>";
+		};
+		E5438ED029D6E0E100C11BD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E574922429DDA27F0014FC00 /* DishAmountModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5438ED129D6E0E800C11BD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5A53C3A29C644D50056EDC6 /* DishAmountViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5438ED229D6E0EC00C11BD8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E574922029DD86390014FC00 /* DishAmountPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E574921829DCAB050014FC00 /* ReusableUI */ = {
+			isa = PBXGroup;
+			children = (
+				E574921E29DCAE710014FC00 /* ConfigurableViewProtocol.swift */,
+				E574921929DCAB130014FC00 /* NameDetailCell */,
+				E5E6DEE129F578AF00E0A15C /* ChartView.swift */,
+				E5ACD3FB29F8F82E005C7698 /* LineDiagram.swift */,
+			);
+			path = ReusableUI;
+			sourceTree = "<group>";
+		};
+		E574921929DCAB130014FC00 /* NameDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				E574921A29DCAB9A0014FC00 /* NameDetailCell.swift */,
+				E574921C29DCABA90014FC00 /* NameDetailCellModel.swift */,
+			);
+			path = NameDetailCell;
+			sourceTree = "<group>";
+		};
 		E58C00E029C234DF0021FAEB = {
 			isa = PBXGroup;
 			children = (
 				E58C00EB29C234DF0021FAEB /* FoodDiary */,
+				E58C00FA29C234E00021FAEB /* LaunchScreen.storyboard */,
 				E58C00EA29C234DF0021FAEB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,16 +377,22 @@
 		E58C00EB29C234DF0021FAEB /* FoodDiary */ = {
 			isa = PBXGroup;
 			children = (
-				E58C00EC29C234DF0021FAEB /* AppDelegate.swift */,
-				E58C00EE29C234DF0021FAEB /* SceneDelegate.swift */,
-				E58C00F029C234DF0021FAEB /* ViewController.swift */,
-				E58C00F229C234DF0021FAEB /* Main.storyboard */,
-				E58C00F829C234E00021FAEB /* Assets.xcassets */,
-				E58C00FA29C234E00021FAEB /* LaunchScreen.storyboard */,
-				E58C00FD29C234E00021FAEB /* Info.plist */,
-				E58C00F529C234DF0021FAEB /* FoodDiary.xcdatamodeld */,
+				E574921829DCAB050014FC00 /* ReusableUI */,
+				E5438EBA29D6DE7500C11BD8 /* Modules */,
+				E5438EB929D6DE2300C11BD8 /* Resources */,
+				E5438EB529D6DC0400C11BD8 /* Application */,
+				E5438EB429D6DBB300C11BD8 /* Database */,
+				E58C011329C2364A0021FAEB /* Extensions */,
 			);
 			path = FoodDiary;
+			sourceTree = "<group>";
+		};
+		E58C011329C2364A0021FAEB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E58C011129C236400021FAEB /* UIImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,9 +453,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50C1FCF29CC3330001587FA /* dishes.json in Resources */,
 				E58C00FC29C234E00021FAEB /* LaunchScreen.storyboard in Resources */,
-				E58C00F929C234E00021FAEB /* Assets.xcassets in Resources */,
-				E58C00F429C234DF0021FAEB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +465,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E58C00F129C234DF0021FAEB /* ViewController.swift in Sources */,
-				E58C00ED29C234DF0021FAEB /* AppDelegate.swift in Sources */,
-				E58C00EF29C234DF0021FAEB /* SceneDelegate.swift in Sources */,
-				E58C00F729C234DF0021FAEB /* FoodDiary.xcdatamodeld in Sources */,
+				E551078129D0470300BBB6EE /* FoodDiary.xcdatamodeld in Sources */,
+				E5E6DEE229F578AF00E0A15C /* ChartView.swift in Sources */,
+				E574921D29DCABA90014FC00 /* NameDetailCellModel.swift in Sources */,
+				E5D6FF4629E8170700881AA4 /* NewDishModel.swift in Sources */,
+				E5438EDC29D6EA4200C11BD8 /* Assembly.swift in Sources */,
+				E5D6FF4429E7EE6000881AA4 /* NewDishPresenter.swift in Sources */,
+				E574922129DD86390014FC00 /* DishAmountPresenter.swift in Sources */,
+				E53FBAAB29F917F100D6FC44 /* CalendarView.swift in Sources */,
+				E551077F29D046A000BBB6EE /* Dish.swift in Sources */,
+				E53FBAAD29F9180500D6FC44 /* DayStatsView.swift in Sources */,
+				E551077A29D0468800BBB6EE /* UIImage.swift in Sources */,
+				E5ACD3FC29F8F82E005C7698 /* LineDiagram.swift in Sources */,
+				E5438EE429D7791D00C11BD8 /* DishesPresenter.swift in Sources */,
+				E5438EE029D7174E00C11BD8 /* DayPresenter.swift in Sources */,
+				E5BC9D7429E16E9B00E048C2 /* ProfileSettingViewController.swift in Sources */,
+				E574922329DD96BC0014FC00 /* DishChooserPresenter.swift in Sources */,
+				E574921F29DCAE710014FC00 /* ConfigurableViewProtocol.swift in Sources */,
+				E551077C29D0468800BBB6EE /* AppDelegate.swift in Sources */,
+				E5438ED929D6EA2A00C11BD8 /* Router.swift in Sources */,
+				E551077E29D0468800BBB6EE /* SettingsViewController.swift in Sources */,
+				E574922529DDA27F0014FC00 /* DishAmountModel.swift in Sources */,
+				E5BC9D7629E16EB700E048C2 /* MealSettingViewController.swift in Sources */,
+				E551077529D0467300BBB6EE /* DishAmountViewController.swift in Sources */,
+				E551077629D0467300BBB6EE /* DishesViewController.swift in Sources */,
+				E574921B29DCAB9A0014FC00 /* NameDetailCell.swift in Sources */,
+				E551077729D0467300BBB6EE /* DayViewController.swift in Sources */,
+				E551077829D0467300BBB6EE /* NewDishViewController.swift in Sources */,
+				E5D0730729D34A2200C26154 /* CoreDataStack.swift in Sources */,
+				E5438EE229D752A800C11BD8 /* SettingsPresenter.swift in Sources */,
+				E551077929D0467300BBB6EE /* DishChooserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E58C00F229C234DF0021FAEB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E58C00F329C234DF0021FAEB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E58C00FA29C234E00021FAEB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -220,7 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +616,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -293,12 +635,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C9MJ8XP8NU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FoodDiary/Info.plist;
+				INFOPLIST_FILE = FoodDiary/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +648,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = maksimow.FoodDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,12 +666,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C9MJ8XP8NU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FoodDiary/Info.plist;
+				INFOPLIST_FILE = FoodDiary/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,9 +679,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = maksimow.FoodDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -364,12 +712,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E58C00F529C234DF0021FAEB /* FoodDiary.xcdatamodeld */ = {
+		E50C1FC929CC2D85001587FA /* FoodDiary.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E58C00F629C234DF0021FAEB /* FoodDiary.xcdatamodel */,
+				E50C1FCA29CC2D85001587FA /* FoodDiary.xcdatamodel */,
 			);
-			currentVersion = E58C00F629C234DF0021FAEB /* FoodDiary.xcdatamodel */;
+			currentVersion = E50C1FCA29CC2D85001587FA /* FoodDiary.xcdatamodel */;
 			path = FoodDiary.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

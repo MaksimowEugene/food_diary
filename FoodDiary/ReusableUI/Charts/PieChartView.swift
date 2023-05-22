@@ -1,6 +1,6 @@
 import UIKit
 
-final class ChartView: UIView {
+final class PieChartView: UIView {
     public var barColors: [UIColor] = [.systemRed, .systemOrange, .systemIndigo]
     public var data: [CGFloat] = [20, 30, 60]
     public var legend: [String] = ["Proteins", "Fats", "Carbohydrates"]

@@ -12,8 +12,8 @@ private struct Constants {
 
 class DayStatsView: UIView {
     
-    private var chartView: ChartView = {
-        let chartView = ChartView()
+    private var chartView: PieChartView = {
+        let chartView = PieChartView()
         chartView.barColors = [.systemRed, .systemOrange, .systemTeal]
         chartView.translatesAutoresizingMaskIntoConstraints = false
         return chartView

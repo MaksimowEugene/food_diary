@@ -11,19 +11,9 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
     var mealType: Int = 0
     var presenter: DishChooserPresenterProtocol
     
-    private let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = Constants.placeholder
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        return searchBar
-    }()
+    private let searchBar: UISearchBar = createSearchBar(placeholder: Constants.placeholder)
 
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellName)
-        return tableView
-    }()
+    private let tableView: UITableView = createTableView(cellIdentifier: Constants.cellName)
 
     init(presenter: DishChooserPresenterProtocol) {
         self.presenter = presenter
@@ -41,25 +31,37 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
         navigationItem.title = titleString
         try? presenter.fetchedResultsController.performFetch()
     }
-
-    func filterResults(for searchText: String) {
-        presenter.filterResults(for: searchText)
-    }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.reloadData()
     }
 
-    func setupViews() {
-        view.backgroundColor = .systemBackground
+    func addSubviews() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
+    }
+    
+    func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setupSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    func setupAddButton() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = addButton
-        searchBar.delegate = self
+    }
+    
+    func setupViews() {
+        addSubviews()
+        setupTableView()
+        setupAddButton()
+        setupSearchBar()
+        view.backgroundColor = .systemBackground
     }
 
     func setupConstraints() {
@@ -75,7 +77,7 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.fetchedResultsController.fetchedObjects?.count ?? 0
+        presenter.getResultsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,7 +100,7 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
 
 extension DishChooserViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterResults(for: searchText)
+        presenter.searchBarTextChanged(searchText: searchText)
         tableView.reloadData()
     }
 }

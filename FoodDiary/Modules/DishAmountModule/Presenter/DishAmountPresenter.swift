@@ -7,6 +7,13 @@ protocol DishAmountPresenterProtocol: AnyObject {
     var grams: Double { get set }
     var name: String { get }
     var dishMeal: DishAmountModel { get set }
+    func saveButtonTapped()
+    func getGramsLabelText() -> String
+    func stepperValueChanged(stepperValue: Double)
+}
+
+private struct Constants {
+    static let grammText = " g"
 }
 
 class DishAmountPresenter: DishAmountPresenterProtocol {
@@ -22,4 +29,20 @@ class DishAmountPresenter: DishAmountPresenterProtocol {
     var router: RouterProtocol
     var name: String
     var dishMeal: DishAmountModel
+    
+    func saveButtonTapped() {
+        if dishMeal.mass != 0 {
+            CoreDataStack.shared.updateDish(dishId: dishMeal.dishId, mealId: dishMeal.mealId, mass: Int64(grams))
+        } else {
+            CoreDataStack.shared.createDish(mealId: dishMeal.mealId, dishId: dishMeal.dishId, grams: Int64(grams))
+        }
+    }
+    
+    func getGramsLabelText() -> String {
+        "\(grams)" + Constants.grammText
+    }
+    
+    func stepperValueChanged(stepperValue: Double) {
+        grams = stepperValue
+    }
 }

@@ -14,7 +14,8 @@ protocol DishChooserPresenterProtocol: AnyObject {
     func showAmount(row: Int, dish: Dishes)
     func goToNewDishCreation()
     init( router: RouterProtocol, meal: Meals)
-    func filterResults(for searchText: String)
+    func getResultsCount() -> Int
+    func searchBarTextChanged(searchText: String)
 }
 
 class DishChooserPresenter: DishChooserPresenterProtocol {
@@ -33,26 +34,9 @@ class DishChooserPresenter: DishChooserPresenterProtocol {
         (masses, dishes) = CoreDataStack.shared.fetchDishesByMeal(meal: meal, toFetch: 20)
     }
     
-    lazy var fetchedResultsController: NSFetchedResultsController<Dishes> = {
-        let context = CoreDataStack.shared.context
-        let request: NSFetchRequest<Dishes> = Dishes.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        return frc
-    }()
     
-    func filterResults(for searchText: String) {
-        let context = CoreDataStack.shared.context
-        let request: NSFetchRequest<Dishes> = Dishes.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        if !searchText.isEmpty {
-            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
-            request.predicate = predicate
-        }
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController = frc
-        try? fetchedResultsController.performFetch()
-    }
+    lazy var fetchedResultsController = createFetchedResultsController(fetchRequest: CoreDataStack.shared.getSearchFetchRequest(),
+        sortDescriptors: [CoreDataStack.shared.getSearchSortDescriptor()])
 
     func showAmount(row: Int, dish: Dishes) {
         guard let mealId = meal.id, let dishId = dish.id else { return }
@@ -70,5 +54,13 @@ class DishChooserPresenter: DishChooserPresenterProtocol {
     
     func getDishesCount() -> Int {
         dishes.count
+    }
+    
+    func getResultsCount() -> Int {
+        fetchedResultsController.fetchedObjects?.count ?? 0
+    }
+    
+    func searchBarTextChanged(searchText: String) {
+        CoreDataStack.shared.filterResults(for: searchText, fetchedResultController: fetchedResultsController)
     }
 }

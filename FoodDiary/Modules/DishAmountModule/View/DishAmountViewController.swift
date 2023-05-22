@@ -2,70 +2,41 @@ import UIKit
 import CoreData
 
 private struct Constants {
-    static let translatesAutoresizingMaskIntoConstraints = false
     static let save = "Save"
-    static let cornerRadius: CGFloat = 8
-    static let buttonBackgroundColor: UIColor = .systemBlue
     static let backgroundColor: UIColor = .systemBackground
-    static let labelFont: UIFont = .boldSystemFont(ofSize: 20)
     static let stepperMinimumValue: Double = 1
     static let stepperMaximumValue: Double = 10000
     static let stepperStepValue: Double = 1
     static let anchor: CGFloat = 16
     static let sizeAnchor: CGFloat = 44
     static let buttonWidthAnchor: CGFloat = 120
-    static let grammText = " g"
 }
 
 class DishAmountViewController: UIViewController {
     let presenter: DishAmountPresenterProtocol
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = Constants.translatesAutoresizingMaskIntoConstraints
-        label.text = presenter.name
-        label.font = Constants.labelFont
-        label.textAlignment = .center
-        return label
-    }()
+    lazy var titleLabel: UILabel = createLabel(withText: presenter.name)
     
-    lazy var stepper: UIStepper = {
-        let stepper = UIStepper()
-        stepper.translatesAutoresizingMaskIntoConstraints = Constants.translatesAutoresizingMaskIntoConstraints
-        stepper.minimumValue = Constants.stepperMinimumValue
-        stepper.maximumValue = Constants.stepperMaximumValue
-        stepper.stepValue = Constants.stepperStepValue
-        stepper.value = presenter.grams
-        return stepper
-    }()
+    lazy var stepper: UIStepper = createStepper(minimumValue: Constants.stepperMinimumValue, maximumValue: Constants.stepperMaximumValue, stepValue: Constants.stepperStepValue, initialValue: presenter.grams)
     
-    lazy var gramsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = Constants.translatesAutoresizingMaskIntoConstraints
-        label.text = "\(presenter.grams)" + Constants.grammText
-        label.textAlignment = .center
-        return label
-    }()
+    lazy var gramsLabel: UILabel = createLabel(withText: presenter.getGramsLabelText() )
     
-    lazy var saveButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = Constants.translatesAutoresizingMaskIntoConstraints
-        button.setTitle(Constants.save, for: .normal)
-        button.backgroundColor = Constants.buttonBackgroundColor
-        button.layer.cornerRadius = Constants.cornerRadius
-        button.addTarget(self, action: #selector(didTapSaveButton(_:)), for: .touchUpInside)
-        return button
-    }()
+    lazy var saveButton: UIButton = createButton(withTitle: Constants.save, target: self,
+                                                 action:  #selector(didTapSaveButton(_:)))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
+        view.backgroundColor = Constants.backgroundColor
+        configureConstraints()
+        stepper.addTarget(self, action: #selector(didChangeStepperValue(_:)), for: .valueChanged)
+    }
+    
+    func addSubviews() {
         view.addSubview(titleLabel)
         view.addSubview(stepper)
         view.addSubview(gramsLabel)
         view.addSubview(saveButton)
-        view.backgroundColor = Constants.backgroundColor
-        configureConstraints()
-        stepper.addTarget(self, action: #selector(didChangeStepperValue(_:)), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,16 +100,12 @@ class DishAmountViewController: UIViewController {
     }
     
     @objc func didChangeStepperValue(_ stepper: UIStepper) {
-        presenter.grams = stepper.value
-        gramsLabel.text = "\(presenter.grams)" + Constants.grammText
+        presenter.stepperValueChanged(stepperValue: stepper.value)
+        gramsLabel.text = presenter.getGramsLabelText()
     }
     
     @objc func didTapSaveButton(_ sender: UIButton) {
-        if presenter.dishMeal.mass != 0 {
-            CoreDataStack.shared.updateDish(dishId: presenter.dishMeal.dishId, mealId: presenter.dishMeal.mealId, mass: Int64(presenter.grams))
-        } else {
-            CoreDataStack.shared.createDish(mealId: presenter.dishMeal.mealId, dishId: presenter.dishMeal.dishId, grams: Int64(presenter.grams))
-        }
+        presenter.saveButtonTapped()
         dismiss(animated: true, completion: nil)
     }
 }

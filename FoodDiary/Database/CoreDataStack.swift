@@ -229,4 +229,34 @@ class CoreDataStack {
         }
         saveContext()
     }
+    
+    func createFetchRequest(for searchText: String?) -> NSFetchRequest<Dishes> {
+        let request: NSFetchRequest<Dishes> = Dishes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        if let searchText = searchText, !searchText.isEmpty {
+            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+            request.predicate = predicate
+        }
+        
+        return request
+    }
+        
+    func filterResults(for searchText: String, fetchedResultController: NSFetchedResultsController<Dishes>) {
+        fetchedResultController.fetchRequest.predicate = CoreDataStack.shared.createFetchRequest(for: searchText).predicate
+        
+        do {
+            try fetchedResultController.performFetch()
+        } catch {
+            print("Error performing fetch: \(error)")
+        }
+    }
+    
+    func getSearchSortDescriptor() -> NSSortDescriptor {
+        NSSortDescriptor(key: "name", ascending: true)
+    }
+
+    func getSearchFetchRequest() -> NSFetchRequest<Dishes> {
+        Dishes.fetchRequest()
+    }
 }

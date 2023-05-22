@@ -25,19 +25,14 @@ protocol DayPresenterProtocol: AnyObject {
     func fetchData(for date: Date)
     func fetchQueue()
     func getNamesDetails() -> [NameDetailCellModel]
+    // func checkIfUserInfoEntered()
 }
 
 class DayPresenter: DayPresenterProtocol {
     weak var view: DayViewProtocol?
     
-    var meals: [Meals] { didSet {
-        //view?.reloadTable()
-        }
-    }
-    var nutsData: [CGFloat] = [0, 0, 0] { didSet {
-        //view?.reloadChart()
-        }
-    }
+    var meals: [Meals]
+    var nutsData: [CGFloat] = [0, 0, 0, 0]
     var context: NSManagedObjectContext?
     var mealsArray: [String]
     func tapOnGear() {
@@ -68,16 +63,13 @@ class DayPresenter: DayPresenterProtocol {
         view?.setupDataSource()
         view?.reloadTable()
         view?.dismissDatePicker()
-        //view?.reloadChart()
     }
     
     func getNamesDetails() -> [NameDetailCellModel] {
         var nameDetails: [NameDetailCellModel] = []
-        nutsData = [0, 0, 0]
+        nutsData = [0, 0, 0, 0]
         for (index, mealName) in mealsArray.enumerated() {
-            guard let queue = CoreDataStack.shared.fetchQueue(by: mealName) else {
-                return []
-            }
+            guard let queue = CoreDataStack.shared.fetchQueue(by: mealName) else { return [] }
             let (masses, dishes) = CoreDataStack.shared.fetchDishesByMeal(meal: meals[index], toFetch: 20)
             var totalCals = 0.0
             var totalProteins = 0.0
@@ -95,6 +87,7 @@ class DayPresenter: DayPresenterProtocol {
                 }
                 detail = String(format: "Cal: %.2f | Pro: %.2fg | Fat: %.2fg | Carb: %.2fg",
                                 totalCals, totalProteins, totalFats, totalCarbs)
+                nutsData[3] += totalCals
                 nutsData[0] += totalProteins
                 nutsData[1] += totalFats
                 nutsData[2] += totalCarbs
@@ -103,4 +96,13 @@ class DayPresenter: DayPresenterProtocol {
         }
         return nameDetails
     }
+    
+    func loadProfileSettingView() {
+        router.showProfileSettings()
+    }
+    
+//    internal func checkIfUserInfoEntered() {
+//        let dailyCalorieNeeds = UserDefaults.standard.double(forKey: "DailyCalorieNeeds")
+//        loadProfileSettingView()
+//    }
 }

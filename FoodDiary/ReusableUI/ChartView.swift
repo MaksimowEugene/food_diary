@@ -1,4 +1,5 @@
 import UIKit
+
 final class ChartView: UIView {
     public var barColors: [UIColor] = [.systemRed, .systemOrange, .systemIndigo]
     public var data: [CGFloat] = [20, 30, 60]
@@ -40,11 +41,9 @@ final class ChartView: UIView {
             label.sizeToFit()
             label.center = center
             addSubview(label)
-            
             return
         }
 
-        
         for (i, value) in data.enumerated() {
             if value > 0 {
                 let fraction = value / maxData
@@ -122,9 +121,7 @@ final class ChartView: UIView {
                 heightConstraint?.isActive = true
             }
         }
-        
         previousView?.trailingAnchor.constraint(equalTo: legendView.trailingAnchor, constant: -10).isActive = true
-        
         legendView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         legendView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
     }

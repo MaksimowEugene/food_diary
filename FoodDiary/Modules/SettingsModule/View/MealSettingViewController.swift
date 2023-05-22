@@ -48,8 +48,7 @@ class MealSettingsViewController: UIViewController, MealSettingsViewProtocol, UI
     func setupViews() {
         view.backgroundColor = .systemBackground
         self.navigationItem.title = Constants.navTitle
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
-                                        target: self, action: #selector(addButtonTapped))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
         tableView.dataSource = self
         tableView.delegate = self
@@ -66,12 +65,10 @@ class MealSettingsViewController: UIViewController, MealSettingsViewProtocol, UI
         ])
     }
     
-    func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCell.EditingStyle,
-                   forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alertController = UIAlertController(title: "Are you sure you want to delete this meal?", message: nil, preferredStyle: .alert)
-            alertController.addAction(Constants.cancelAction)
+            let alertController = UIAlertController(title: "Are you sure you want to delete this meal?", message: "This action will cause data loss of all its dishes.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                 self.presenter.deleteQueue(row: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -80,13 +77,11 @@ class MealSettingsViewController: UIViewController, MealSettingsViewProtocol, UI
         }
     }
 
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let alertController = UIAlertController(title: "Change Meal Name", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.text = self.presenter.mealsArray[indexPath.row]
-            
-        }
+        alertController.addTextField { textField in textField.text = self.presenter.mealsArray[indexPath.row] }
         alertController.addAction(Constants.cancelAction)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             if let text = alertController.textFields?.first?.text {
@@ -103,7 +98,6 @@ class MealSettingsViewController: UIViewController, MealSettingsViewProtocol, UI
             textField.placeholder = "Meal name"
             textField.text = ""
         }
-
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             if let text = alertController.textFields?.first?.text, text != "" && self.presenter.checkIfQueueExists(text: text) {
@@ -158,28 +152,7 @@ class MealSettingsViewController: UIViewController, MealSettingsViewProtocol, UI
         return .delete
     }
     
-    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-//    @objc func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField.text != "" {
-//            shakeTextField(textField)
-//        }
-//    }
-//
-//    func shakeTextField(_ textField: UITextField) {
-//        let shake = CABasicAnimation(keyPath: "position")
-//        shake.duration = 0.1
-//        shake.repeatCount = 2
-//        shake.autoreverses = true
-//        let fromPoint = CGPoint(x: textField.center.x - 10, y: textField.center.y)
-//        let toPoint = CGPoint(x: textField.center.x + 10, y: textField.center.y)
-//        shake.fromValue = NSValue(cgPoint: fromPoint)
-//        shake.toValue = NSValue(cgPoint: toPoint)
-//
-//        textField.layer.add(shake, forKey: "position")
-//    }
-    
 }

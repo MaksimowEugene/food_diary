@@ -14,7 +14,7 @@ protocol DishChooserPresenterProtocol: AnyObject {
     func showAmount(row: Int, dish: Dishes)
     func goToNewDishCreation()
     init( router: RouterProtocol, meal: Meals)
-    //func filterResults(for searchText: String)
+    func filterResults(for searchText: String)
 }
 
 class DishChooserPresenter: DishChooserPresenterProtocol {
@@ -38,7 +38,6 @@ class DishChooserPresenter: DishChooserPresenterProtocol {
         let request: NSFetchRequest<Dishes> = Dishes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        //frc.delegate = self
         return frc
     }()
     
@@ -51,7 +50,6 @@ class DishChooserPresenter: DishChooserPresenterProtocol {
             request.predicate = predicate
         }
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        //frc.delegate = self
         fetchedResultsController = frc
         try? fetchedResultsController.performFetch()
     }

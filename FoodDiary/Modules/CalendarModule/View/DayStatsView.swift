@@ -18,6 +18,12 @@ class DayStatsView: UIView {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         return chartView
     }()
+
+    private var linearChartView: LineChartView = {
+        let linearChartView = LineChartView()
+        linearChartView.translatesAutoresizingMaskIntoConstraints = false
+        return linearChartView
+    }()
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,11 +38,16 @@ class DayStatsView: UIView {
     private func setupViews() {
         backgroundColor = .systemBackground
         addSubview(chartView)
+        addSubview(linearChartView)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            chartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.constraintConstant),
+            linearChartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.constraintConstant),
+            linearChartView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            linearChartView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            linearChartView.heightAnchor.constraint(equalToConstant: 100),
+            chartView.topAnchor.constraint(equalTo: linearChartView.bottomAnchor, constant: Constants.constraintConstant),
             chartView.leadingAnchor.constraint(equalTo: leadingAnchor),
             chartView.trailingAnchor.constraint(equalTo: trailingAnchor),
             chartView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
@@ -45,8 +56,12 @@ class DayStatsView: UIView {
     }
     
     func reloadChart(withData data: [CGFloat]) {
-        chartView.data = data
+        chartView.data = [data[0], data[1], data[2]]
         chartView.setup()
         chartView.setNeedsDisplay()
+        let dailyCalorieNeeds = UserDefaults.standard.value(forKey: "DailyCalorieNeeds") as? Double
+        linearChartView.consumedCalories = data[3]
+        linearChartView.maxCalories = dailyCalorieNeeds ?? 2500
+        linearChartView.setNeedsDisplay()
     }
 }

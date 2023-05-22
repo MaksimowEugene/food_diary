@@ -103,7 +103,6 @@ class DishesViewController: UIViewController, DishesViewProtocol {
         dataSource.apply(snapshot)
         noDataLabel.isHidden = !presenter.dishes.isEmpty
         tableView.backgroundView = noDataLabel
-
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -1,8 +1,6 @@
 import UIKit
 
-protocol DishAmountViewProtocol: AnyObject {
-    
-}
+protocol DishAmountViewProtocol: AnyObject {}
 
 protocol DishAmountPresenterProtocol: AnyObject {
     init(router: RouterProtocol, name: String, dishMeal: DishAmountModel)
@@ -18,7 +16,6 @@ class DishAmountPresenter: DishAmountPresenterProtocol {
         self.dishMeal = dishMeal
         grams = dishMeal.mass != 0 ? Double(dishMeal.mass) : 1
     }
-    
     
     var grams: Double
     weak var view: DishAmountViewProtocol?

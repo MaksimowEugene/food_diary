@@ -16,9 +16,7 @@ class CoreDataStack {
     
     private init() {
         CoreDataStack.persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
+            if let error = error as NSError? { fatalError("Unresolved error \(error), \(error.userInfo)") }
         })
     }
     
@@ -51,7 +49,6 @@ class CoreDataStack {
     func saveContext() {
         try? context.save()
     }
-    
     
     func fetchValidQueues() -> [Queue] {
         let fetchRequest: NSFetchRequest<Queue> = Queue.fetchRequest()
@@ -148,7 +145,7 @@ class CoreDataStack {
     func getDish(dishId: UUID, mealId: UUID) -> DishesMeals? {
         let fetchRequest: NSFetchRequest<DishesMeals> = DishesMeals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mealId == %@ AND dishId == %@",
-                                             dishId as CVarArg, mealId as CVarArg)
+                                             mealId as CVarArg, dishId as CVarArg)
         let dishesMeals = try? context.fetch(fetchRequest)
         return dishesMeals?.first
     }
@@ -210,13 +207,10 @@ class CoreDataStack {
         
         let data = try! Data(contentsOf: dishesUrl)
         let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
-        
         let mealsArray = ["Breakfast",
                           "Lunch",
                           "Dinner",
                           "Snack"]
-        
-        let context = CoreDataStack.shared.context
         
         for (index, mealName) in mealsArray.enumerated() {
             let queue = Queue(context: context)

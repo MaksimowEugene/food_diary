@@ -32,52 +32,69 @@ class DayViewController: UIViewController, DayViewProtocol  {
     func getDate() -> Date {
         return Date()
     }
-
+    
     private let stackView = UIStackView()
-
+    
     var presenter: DayPresenterProtocol
-
+    
     init(presenter: DayPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         setupViews()
         addCustomViewsToStackView()
     }
+    
+    private func checkDailyCalorieNeeds() {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.value(forKey: "DailyCalorieNeeds") == nil {
+            let alertController = UIAlertController(title: "Profile configuration", message: "Please go to settings and set your info to calculate your calorie needs.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in }
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        setupDataSource()
+        reloadTable()
+        reloadChart()
+        clearStackView()
+        addCustomViewsToStackView()
+        segmentedControl.selectedSegmentIndex = 0
+        checkDailyCalorieNeeds()
     }
     
+    private func clearStackView() {
+        stackView.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    let segmentedControl = UISegmentedControl(items: Constants.segmentedItems)
+    
     private func configureNavigationBar() {
-        let segmentedControl = UISegmentedControl(items: Constants.segmentedItems)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = segmentedControl
-
         let settingsButton = UIBarButtonItem(image: Constants.gearImage, style: Constants.gearButtonStyle, target: self, action: #selector(settingsButtonTapped))
         navigationItem.rightBarButtonItem = settingsButton
     }
-
+    
     private func setupViews() {
         view.backgroundColor = .systemBackground
-
-        // Configure stack view
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
-
-        // Constrain stack view to fill the view
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.constraintConstant),
@@ -85,22 +102,19 @@ class DayViewController: UIViewController, DayViewProtocol  {
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
+    
     private func addCustomViewsToStackView() {
         let calendarView = CalendarView(presenter: presenter)
         stackView.addArrangedSubview(calendarView)
         calendarView.setupView()
-        
         calendarView.fetchData()
         calendarView.setupDataSource()
-
         let dayStatsView = DayStatsView()
         stackView.addArrangedSubview(dayStatsView)
-
         stackView.arrangedSubviews[0].isHidden = false
         stackView.arrangedSubviews[1].isHidden = true
     }
-
+    
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -116,7 +130,7 @@ class DayViewController: UIViewController, DayViewProtocol  {
             stackView.arrangedSubviews[1].isHidden = true
         }
     }
-
+    
     @objc private func settingsButtonTapped() {
         presenter.tapOnGear()
     }

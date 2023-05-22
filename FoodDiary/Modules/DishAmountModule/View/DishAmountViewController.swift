@@ -70,7 +70,6 @@ class DishAmountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if modalPresentationStyle == .pageSheet {
             presentingViewController?.beginAppearanceTransition(false, animated: animated)
         }
@@ -78,7 +77,6 @@ class DishAmountViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if modalPresentationStyle == .pageSheet {
             presentingViewController?.endAppearanceTransition()
         }
@@ -86,7 +84,6 @@ class DishAmountViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         if modalPresentationStyle == .pageSheet {
             presentingViewController?.beginAppearanceTransition(true, animated: animated)
         }
@@ -94,7 +91,6 @@ class DishAmountViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         if modalPresentationStyle == .pageSheet {
             presentingViewController?.endAppearanceTransition()
         }
@@ -138,14 +134,11 @@ class DishAmountViewController: UIViewController {
     }
     
     @objc func didTapSaveButton(_ sender: UIButton) {
-        
         if presenter.dishMeal.mass != 0 {
-            // Update the existing dish
             CoreDataStack.shared.updateDish(dishId: presenter.dishMeal.dishId, mealId: presenter.dishMeal.mealId, mass: Int64(presenter.grams))
         } else {
             CoreDataStack.shared.createDish(mealId: presenter.dishMeal.mealId, dishId: presenter.dishMeal.dishId, grams: Int64(presenter.grams))
         }
-        
         dismiss(animated: true, completion: nil)
     }
 }

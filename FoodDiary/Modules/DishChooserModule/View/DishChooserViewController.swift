@@ -3,6 +3,7 @@ import CoreData
 
 private struct Constants {
     static let placeholder = "Search for a product"
+    static let cellName = "DishCell"
 }
 
 class DishChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
@@ -20,6 +21,7 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellName)
         return tableView
     }()
 
@@ -41,7 +43,7 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func filterResults(for searchText: String) {
-        //presenter.filterResults(for: searchText)
+        presenter.filterResults(for: searchText)
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -52,9 +54,9 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
         view.backgroundColor = .systemBackground
         view.addSubview(searchBar)
         view.addSubview(tableView)
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DishCell")
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = addButton
         searchBar.delegate = self
@@ -68,7 +70,7 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
@@ -91,8 +93,6 @@ class DishChooserViewController: UIViewController, UITableViewDelegate, UITableV
 
     @objc func addTapped() {
         presenter.goToNewDishCreation()
-        //let addDishViewController = NewDishViewController()
-        //navigationController?.pushViewController(addDishViewController, animated: true)
     }
 }
 

@@ -1,7 +1,7 @@
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate, SettingsViewProtocol, UITableViewDataSource, UITableViewDelegate {
-    
+class SettingsViewController: UIViewController, UIPickerViewDelegate,
+                                SettingsViewProtocol, UITableViewDataSource, UITableViewDelegate {
     private struct Constants {
         static let navTitle = "Settings"
         static let nameLabelText = "Guest"
@@ -66,6 +66,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, SettingsVi
         } else {
             cell.textLabel?.text = Constants.mealSettings
         }
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 

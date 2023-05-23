@@ -29,7 +29,10 @@ class LineChartView: UIView {
         let consumedRect = CGRect(x: 10, y: consumedRectY, width: consumedRectWidth, height: consumedRectHeight)
 
         let fillColor: UIColor = .orange
-        let consumedRectPath = UIBezierPath(roundedRect: consumedRect, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: 8, height: 8))
+        var consumedRectPath = UIBezierPath(roundedRect: consumedRect, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: 8, height: 8))
+        if consumedCalories >= maxCalories {
+            consumedRectPath = UIBezierPath(roundedRect: consumedRect, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8))
+        }
         fillColor.setFill()
         consumedRectPath.fill()
 
@@ -41,7 +44,7 @@ class LineChartView: UIView {
         consumedLabel.numberOfLines = 2
         consumedLabel.adjustsFontSizeToFitWidth = true
         consumedLabel.minimumScaleFactor = 0.5
-        consumedLabel.text = "Calories\n\(consumedCalories > maxCalories ? "Calorie Overload" : "")"
+        consumedLabel.text = "\(consumedCalories > maxCalories ? "Calorie Overload" : "")"
         addSubview(consumedLabel)
 
         let remainingRectWidth = (maxCalories - consumedCalories) * xScale
@@ -56,6 +59,7 @@ class LineChartView: UIView {
         } else {
             remainingRectPath = UIBezierPath(roundedRect: remainingRect, byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: 8, height: 8))
         }
+        
         remainingFillColor.setFill()
         remainingRectPath.fill()
 

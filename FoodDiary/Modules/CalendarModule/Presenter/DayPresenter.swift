@@ -25,7 +25,6 @@ protocol DayPresenterProtocol: AnyObject {
     func fetchData(for date: Date)
     func fetchQueue()
     func getNamesDetails() -> [NameDetailCellModel]
-    // func checkIfUserInfoEntered()
 }
 
 class DayPresenter: DayPresenterProtocol {
@@ -35,15 +34,6 @@ class DayPresenter: DayPresenterProtocol {
     var nutsData: [CGFloat] = [0, 0, 0, 0]
     var context: NSManagedObjectContext?
     var mealsArray: [String]
-    func tapOnGear() {
-        router.showSettings()
-    }
-
-    func tapOnCell(indexPath: Int) {
-        let meal = meals[indexPath]
-        router.showDishes(meal: meal)
-    }
-    
     var router: RouterProtocol
     
     required init(router: RouterProtocol) {
@@ -53,10 +43,12 @@ class DayPresenter: DayPresenterProtocol {
         mealsArray = CoreDataStack.shared.fetchValidQueues().map { $0.mealName ?? "" }
     }
     
+    // Загружает очередь приёмов пищи
     internal func fetchQueue() {
         mealsArray = CoreDataStack.shared.fetchValidQueues().map { $0.mealName ?? "" }
     }
     
+    // Обновляет информацию на экране для выбранной даты
     internal func fetchData(for date: Date) {
         fetchQueue()
         meals = CoreDataStack.shared.fetchMealsByDateAndCreateIfNeeded(date: date)
@@ -65,6 +57,7 @@ class DayPresenter: DayPresenterProtocol {
         view?.dismissDatePicker()
     }
     
+    // Получает детальную информацию о приёмах пищи
     func getNamesDetails() -> [NameDetailCellModel] {
         var nameDetails: [NameDetailCellModel] = []
         nutsData = [0, 0, 0, 0]
@@ -97,12 +90,15 @@ class DayPresenter: DayPresenterProtocol {
         return nameDetails
     }
     
-    func loadProfileSettingView() {
-        router.showProfileSettings()
+    // Загружает вью настроек
+    func tapOnGear() {
+        router.showSettings()
+    }
+
+    // Обрабатывает нажатие на приём пищи
+    func tapOnCell(indexPath: Int) {
+        let meal = meals[indexPath]
+        router.showDishes(meal: meal)
     }
     
-//    internal func checkIfUserInfoEntered() {
-//        let dailyCalorieNeeds = UserDefaults.standard.double(forKey: "DailyCalorieNeeds")
-//        loadProfileSettingView()
-//    }
 }

@@ -7,10 +7,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let _ = CoreDataStack.shared
+        let stack = CoreDataStack.shared
         let firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")
         if !firstLaunch {
-            CoreDataStack.shared.preloadData()
+            stack.preloadData()
             UserDefaults.standard.set(true, forKey: "firstLaunch")
         }
         let navigationController = UINavigationController()

@@ -11,10 +11,7 @@ class DishesViewController: UIViewController, DishesViewProtocol {
     var titleString: String = ""
     var presenter: DishesPresenterProtocol
     
-    private lazy var dataSource: DishesDataSource = {
-        let dataSource = DishesDataSource(tableView)
-        return dataSource
-    }()
+    private lazy var dataSource: DishesDataSource = DishesDataSource(tableView)
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -90,16 +87,7 @@ class DishesViewController: UIViewController, DishesViewProtocol {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections([Constants.dishSection])
-        let nameDetails = presenter.dishes.enumerated().map { (index, dish) in
-            let name = dish.name ?? ""
-            let koeff = presenter.masses[index] / 100
-            let detail = String(format: "Cal: %.2f | Pro: %.2fg | Fat: %.2fg | Carb: %.2fg",
-                                dish.cals * koeff, dish.protein * koeff, dish.fats * koeff, dish.carbohydrates * koeff)
-            return NameDetailCellModel(name: name, detail: detail)
-        }
-        nameDetails.forEach { nameDetail in
-            snapshot.appendItems([nameDetail], toSection: Constants.dishSection)
-        }
+        snapshot = presenter.setupSnapshot(snapshot: snapshot)
         dataSource.apply(snapshot)
         noDataLabel.isHidden = !presenter.dishes.isEmpty
         tableView.backgroundView = noDataLabel
@@ -122,6 +110,9 @@ extension DishesViewController: UITableViewDelegate {
             var snapshot = self.dataSource.snapshot()
             snapshot.deleteItems([snapshot.itemIdentifiers(inSection: Constants.dishSection)[indexPath.row]])
             self.dataSource.apply(snapshot, animatingDifferences: true)
+            if snapshot.numberOfItems == 0 {
+                noDataLabel.isHidden = false
+            }
             completionHandler(true)
         }
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])

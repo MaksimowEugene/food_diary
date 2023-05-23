@@ -32,6 +32,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
         mealsArray = CoreDataStack.shared.fetchValidQueues().map { $0.mealName ?? "" }
     }
     
+    // Отвечает за выбор загружаемого окна настроек
     func loadSetting(setting: Int) {
         switch setting {
         case 0:
@@ -43,41 +44,50 @@ class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
+    // Проверяет существует ли приём пищи с таким названием
     func checkIfQueueExists(text: String) -> Bool {
-        !CoreDataStack.shared.fetchAllQueues().contains(where: {$0.mealName == text } )
+        !CoreDataStack.shared.fetchValidQueues().contains(where: {$0.mealName == text } )
     }
     
+    // Загружает вью настроек профиля пользователя
     func loadProfileSettingView() {
         router.showProfileSettings()
     }
     
+    // Загружает вью настроек приёмов пищи
     func loadMealSettingView() {
         router.showMealSettings()
     }
     
+    // Загружает список приёмов пищи
     func fetchMealsArray() {
         mealsArray = CoreDataStack.shared.fetchValidQueues().map { $0.mealName ?? "" }
     }
     
+    // Создаёт новый приём пищи в очереди
     func createNewQueue(text: String) {
         CoreDataStack.shared.createQueue(text: text)
     }
     
+    // Определяет сколько приёмов пищи в массиве
     func mealsArrayCount() -> Int {
         mealsArray.count
     }
     
+    // Обрабатывает нажатие на приём пищи в очереди
     func handleCellClick(row: Int, text: String) {
         mealsArray[row] = text
         CoreDataStack.shared.updateQueueName(queue: Int16(row), newName: text)
     }
     
+    // Удаляет приём пищи
     func deleteQueue(row: Int) {
         CoreDataStack.shared.updateQueuesFromNames(names: mealsArray)
         CoreDataStack.shared.deleteQueue(queue: row)
         fetchMealsArray()
     }
     
+    // Обрабатывает перемещение приёма пищи по очереди
     func handleMealMove(sourceIndexPathRow: Int, destinationIndexPathRow: Int) {
         let movedObject = mealsArray[sourceIndexPathRow]
         mealsArray.remove(at: sourceIndexPathRow)

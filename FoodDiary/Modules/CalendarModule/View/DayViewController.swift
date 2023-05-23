@@ -9,6 +9,7 @@ private struct Constants {
     static let constraintConstant: CGFloat = 20
     static let gearButtonStyle = UIBarButtonItem.Style.plain
     static let segmentedItems = ["Calendar", "Stats"]
+    static let dailyCalorieNeeds = "DailyCalorieNeeds"
 }
 
 class DayViewController: UIViewController, DayViewProtocol  {
@@ -54,12 +55,12 @@ class DayViewController: UIViewController, DayViewProtocol  {
     }
     
     private func checkDailyCalorieNeeds() {
-        let userDefaults = UserDefaults.standard
-        if userDefaults.value(forKey: "DailyCalorieNeeds") == nil {
+        guard loadDataFromKeychain(forKey: Constants.dailyCalorieNeeds) != nil else {
             let alertController = UIAlertController(title: "Profile configuration", message: "Please go to settings and set your info to calculate your calorie needs.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in }
             alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
+            return
         }
     }
 

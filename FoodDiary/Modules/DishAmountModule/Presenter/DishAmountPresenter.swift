@@ -30,6 +30,7 @@ class DishAmountPresenter: DishAmountPresenterProtocol {
     var name: String
     var dishMeal: DishAmountModel
     
+    // Обрабатывает нажатие кнопки сохранения
     func saveButtonTapped() {
         if dishMeal.mass != 0 {
             CoreDataStack.shared.updateDish(dishId: dishMeal.dishId, mealId: dishMeal.mealId, mass: Int64(grams))
@@ -38,10 +39,12 @@ class DishAmountPresenter: DishAmountPresenterProtocol {
         }
     }
     
+    // Получает текст для поля граммов
     func getGramsLabelText() -> String {
         "\(grams)" + Constants.grammText
     }
     
+    // Обрабатывает изменение значения элемента выбора граммов
     func stepperValueChanged(stepperValue: Double) {
         grams = stepperValue
     }

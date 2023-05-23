@@ -20,6 +20,7 @@ class CoreDataStack {
         })
     }
     
+    //
     func createMeal(mealDate: Date, queue: Queue){
         guard let newMeal = NSEntityDescription.insertNewObject(forEntityName: "Meals", into: context) as? Meals else { return }
         newMeal.id = UUID()
@@ -27,6 +28,7 @@ class CoreDataStack {
         newMeal.meals_queue = queue
     }
     
+    //
     func createMeals(date: Date, queues: [Queue]){
         for queue in queues {
             createMeal(mealDate: date, queue: queue)
@@ -34,6 +36,7 @@ class CoreDataStack {
         saveContext()
     }
     
+    //
     func fetchMealsByDateAndCreateIfNeeded(date: Date) -> [Meals] {
         let meals: [Meals] = fetchMealsByDate(date: date)
         let allQueues = fetchValidQueues()
@@ -46,10 +49,12 @@ class CoreDataStack {
         return meals
     }
     
+    //
     func saveContext() {
         try? context.save()
     }
     
+    //
     func fetchValidQueues() -> [Queue] {
         let fetchRequest: NSFetchRequest<Queue> = Queue.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "queue > -1")
@@ -58,12 +63,14 @@ class CoreDataStack {
         return result
     }
     
+    //
     func fetchQueue(by mealName: String) -> Queue? {
         let request: NSFetchRequest<Queue> = Queue.fetchRequest()
         request.predicate = NSPredicate(format: "mealName == %@", mealName)
         return try? context.fetch(request).first
     }
     
+    //
     func getQueueByQueueValue(queueValue: Int16) -> Queue? {
         let fetchRequest: NSFetchRequest<Queue> = Queue.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "queue = %@", argumentArray: [queueValue])
@@ -71,24 +78,21 @@ class CoreDataStack {
         return matchingQueues?.first
     }
     
+    //
     func deleteQueue(queue: Int) {
         guard let result = getQueueByQueueValue(queueValue: Int16(queue)) else { return }
         context.delete(result)
         saveContext()
     }
-    
-    func fetchAllQueues() -> [Queue] {
-        let fetchRequest: NSFetchRequest<Queue> = Queue.fetchRequest()
-        guard let matchingQueues = try? context.fetch(fetchRequest) else { return [] }
-        return matchingQueues
-    }
-    
+     
+    // Обновляет название элемента очереди по его позиции в ней
     func updateQueueName(queue: Int16, newName: String) {
         guard let queue = getQueueByQueueValue(queueValue: queue) else { return }
         queue.mealName = newName
         saveContext()
     }
     
+    // Создаёт новый элемент очереди
     func createQueue(text: String) {
         let newQueue = Queue(context: context)
         newQueue.mealName = text
@@ -100,6 +104,7 @@ class CoreDataStack {
         saveContext()
     }
     
+    // Создаёт новое блюдо
     func createDish(mealId: UUID, dishId: UUID, grams: Int64) {
         let fetchRequest: NSFetchRequest<DishesMeals> = DishesMeals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mealId == %@ AND dishId == %@", mealId as CVarArg, dishId as CVarArg)
@@ -114,6 +119,20 @@ class CoreDataStack {
         saveContext()
     }
     
+    // Создаёт новое блюдо
+    func createNewDish(newDishModel: NewDishModel) {
+        let context = CoreDataStack.shared.context
+        let dish = Dishes(context: context)
+        dish.id = UUID()
+        dish.name = newDishModel.dishName
+        dish.cals = newDishModel.cals
+        dish.protein = newDishModel.proteins
+        dish.fats = newDishModel.fats
+        dish.carbohydrates = newDishModel.carbs
+        CoreDataStack.shared.saveContext()
+    }
+    
+    // Загружает приёмы пищи для даты
     func fetchMealsByDate(date: Date) -> [Meals] {
         let request: NSFetchRequest<Meals> = Meals.fetchRequest()
         let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
@@ -128,10 +147,12 @@ class CoreDataStack {
         return fetchedResults
     }
     
+    // Загружает блюда приёма пищи
     func fetchDishesByMeal(meal: Meals, toFetch: Int) -> ([Double], [Dishes]) {
         fetchDishByDishMeal(dishMeal: fetchDishesMealsByMeal(meal: meal, toFetch: toFetch), toFetch: toFetch)
     }
     
+    // Удаляет блюдо из приёма пищи
     func deleteDishMeal(mealId: UUID, dishId: UUID) {
         let fetchRequest: NSFetchRequest<DishesMeals> = DishesMeals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mealId == %@ AND dishId == %@",
@@ -142,6 +163,7 @@ class CoreDataStack {
         saveContext()
     }
     
+    // Получает блюдо приёма пищи
     func getDish(dishId: UUID, mealId: UUID) -> DishesMeals? {
         let fetchRequest: NSFetchRequest<DishesMeals> = DishesMeals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mealId == %@ AND dishId == %@",
@@ -150,12 +172,14 @@ class CoreDataStack {
         return dishesMeals?.first
     }
     
+    // Обновляет массу блюда приёма пищи
     func updateDish(dishId: UUID, mealId: UUID, mass: Int64) {
         guard let dish = getDish(dishId: dishId, mealId: mealId) else { return }
         dish.mass = mass
         saveContext()
     }
     
+    // Получает блюдо из списка блюд приёма пищи
     private func fetchDishByDishMeal(dishMeal: [DishesMeals], toFetch: Int) -> ([Double], [Dishes]) {
         var dishesArray: [Dishes] = []
         var masses: [Double] = []
@@ -174,6 +198,7 @@ class CoreDataStack {
         return (masses, dishesArray)
     }
     
+    // Обновляет очередь по входящему массиву их названий
     func updateQueuesFromNames(names: [String]) {
         let request: NSFetchRequest<Queue> = Queue.fetchRequest()
         request.predicate = NSPredicate(format: "queue > -1")
@@ -186,6 +211,7 @@ class CoreDataStack {
         saveContext()
     }
     
+    // Получает блюда приёма пищи по приёму пищи
     private func fetchDishesMealsByMeal(meal: Meals, toFetch: Int) -> [DishesMeals] {
         var dishesMealsArray: [DishesMeals] = []
         let fetchRequest: NSFetchRequest<DishesMeals> = DishesMeals.fetchRequest()
@@ -200,6 +226,7 @@ class CoreDataStack {
         return dishesMealsArray
     }
     
+    // Производит начальную загрузку информации в базу данных
     func preloadData() {
         guard let dishesUrl = Bundle.main.url(forResource: "dishes", withExtension: "json") else {
             return
@@ -230,6 +257,7 @@ class CoreDataStack {
         saveContext()
     }
     
+    // Создаёт запрос для фильтра по названию блюда
     func createFetchRequest(for searchText: String?) -> NSFetchRequest<Dishes> {
         let request: NSFetchRequest<Dishes> = Dishes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -241,7 +269,8 @@ class CoreDataStack {
         
         return request
     }
-        
+    
+    // Выполняет фильтрацию по созданному запросу для фильтра
     func filterResults(for searchText: String, fetchedResultController: NSFetchedResultsController<Dishes>) {
         fetchedResultController.fetchRequest.predicate = CoreDataStack.shared.createFetchRequest(for: searchText).predicate
         
@@ -252,10 +281,12 @@ class CoreDataStack {
         }
     }
     
+    // Создаёт NSSortDescriptor для фильтра
     func getSearchSortDescriptor() -> NSSortDescriptor {
         NSSortDescriptor(key: "name", ascending: true)
     }
-
+    
+    // Создаёт NSFetchRequest для фильтра
     func getSearchFetchRequest() -> NSFetchRequest<Dishes> {
         Dishes.fetchRequest()
     }

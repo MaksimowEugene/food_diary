@@ -25,6 +25,7 @@ class Router: RouterProtocol {
         self.assembly = assembly
     }
     
+    // Выполняет переход к вью выбора массы
     func showDishAmount(pageTitle: String, dishesMeals: DishAmountModel) {
         if let navigationController = navigationController {
             guard let dishesViewController = assembly?.createDishAmount(router: self, name: pageTitle, dishMeal: dishesMeals) else { return }
@@ -32,6 +33,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к начальному вью
     func initialViewController() {
         if let navigationController = navigationController {
             guard let dayVC = assembly?.createDay(router: self) else { return }
@@ -39,6 +41,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью списка блюд приёма пищи
     func showDishes(meal: Meals) {
         if let navigationController = navigationController {
             guard let dishesViewController = assembly?.createDishes(meal: meal, router: self) else { return }
@@ -46,6 +49,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью списка блюд
     func showDishChooser(meal: Meals) {
         if let navigationController = navigationController {
             guard let dishChooserViewController = assembly?.createDishChooser(meal: meal, router: self) else { return }
@@ -53,6 +57,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью настроек
     func showSettings() {
         if let navigationController = navigationController {
             guard let settingsViewController = assembly?.createSettings(router: self) else { return }
@@ -60,6 +65,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью настроек пользователя
     func showProfileSettings() {
         if let navigationController = navigationController {
             guard let profileSettingsViewController = assembly?.createProfileSettings(router: self) else { return }
@@ -67,6 +73,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью настроек приёмов пищи
     func showMealSettings() {
         if let navigationController = navigationController {
             guard let mealSettingsViewController = assembly?.createMealSettings(router: self) else { return }
@@ -74,6 +81,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет переход к вью создания нового блюда
     func showNewDish() {
         if let navigationController = navigationController {
             guard let newDishViewController = assembly?.createNewDish(router: self) else { return }
@@ -81,6 +89,7 @@ class Router: RouterProtocol {
         }
     }
     
+    // Выполняет возвращение к корневому вью
     func popToRoot() {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)

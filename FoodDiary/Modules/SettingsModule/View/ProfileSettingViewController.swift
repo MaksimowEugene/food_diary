@@ -1,4 +1,5 @@
 import UIKit
+import Security
 
 private struct Constants {
     static let navTitle = "Settings"
@@ -13,7 +14,7 @@ private struct Constants {
     static let labelFont = UIFont.systemFont(ofSize: 24, weight: .bold)
 }
 
-private struct UserDefaultsKeys {
+private struct KeychainKeys {
     static let name = "Name"
     static let weight = "Weight"
     static let weightGoal = "WeightGoal"
@@ -42,7 +43,7 @@ enum ActivityLevel: Int {
 
 class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, ProfileSettingsViewProtocol {
     
-    let nameTextField: UITextField = {
+    lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Name"
         textField.borderStyle = .roundedRect
@@ -53,7 +54,7 @@ class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, Pro
         return textField
     }()
     
-    let recommendedCaloriesLabel: UILabel = {
+    lazy var recommendedCaloriesLabel: UILabel = {
         let label = UILabel()
         label.font = Constants.labelFont
         label.textAlignment = .center
@@ -62,51 +63,12 @@ class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, Pro
         return label
     }()
     
-    let weightTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Weight (kg)"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .numberPad
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isEnabled = false
-        return textField
-    }()
-    
-    let weightGoalTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Weight Goal (kg)"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .numberPad
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isEnabled = false
-        return textField
-    }()
-    
-    let ageTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Age"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .numberPad
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isEnabled = false
-        return textField
-    }()
-    
-    let genderSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Male", "Female"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.isEnabled = false
-        return segmentedControl
-    }()
-    
-    let activityLevelSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Low", "Mid", "High", "Int"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.isEnabled = false
-        return segmentedControl
-    }()
+    lazy var weightTextField: UITextField = createTextField(placeholder: "Weight (kg)", borderStyle: .roundedRect, keyboardType: .numberPad)
+    lazy var weightGoalTextField: UITextField = createTextField(placeholder: "Weight Goal (kg)", borderStyle: .roundedRect, keyboardType: .numberPad)
+    lazy var ageTextField: UITextField = createTextField(placeholder: "Age", borderStyle: .roundedRect, keyboardType: .numberPad)
+    lazy var genderSegmentedControl: UISegmentedControl = createSegmentedControl(items: ["Male", "Female"], selectedSegmentIndex: 0, isEnabled: false)
+    lazy var activityLevelSegmentedControl: UISegmentedControl = createSegmentedControl(items: ["Low", "Mid", "High", "Int"],
+                                                                                        selectedSegmentIndex: 0, isEnabled: false)
     
     func setupViews() {
         view.backgroundColor = .systemBackground
@@ -200,21 +162,33 @@ class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, Pro
     @objc private func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         updateRecommendedCalories()
     }
-
     
     private func loadSavedValues() {
-           let dailyCalorieNeeds = UserDefaults.standard.double(forKey: UserDefaultsKeys.dailyCalorieNeeds)
-           recommendedCaloriesLabel.text = "Recommended Calories:\n\(dailyCalorieNeeds)"
-           nameTextField.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.name)
-           weightTextField.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.weight)
-           weightGoalTextField.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.weightGoal)
-           ageTextField.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.age)
-           let genderIndex = UserDefaults.standard.integer(forKey: UserDefaultsKeys.gender)
-           genderSegmentedControl.selectedSegmentIndex = genderIndex
-           let activityLevelIndex = UserDefaults.standard.integer(forKey: UserDefaultsKeys.activityLevel)
-           activityLevelSegmentedControl.selectedSegmentIndex = activityLevelIndex
-           updateRecommendedCalories()
-       }
+        
+        if let dailyCalorieNeeds = loadDataFromKeychain(forKey: KeychainKeys.dailyCalorieNeeds) {
+            recommendedCaloriesLabel.text = "Recommended Calories:\n\(dailyCalorieNeeds)"
+        }
+        if let username = loadDataFromKeychain(forKey: KeychainKeys.name) {
+            nameTextField.text = username
+        }
+        if let weight = loadDataFromKeychain(forKey: KeychainKeys.weight) {
+            weightTextField.text = weight
+        }
+        if let weightGoal = loadDataFromKeychain(forKey: KeychainKeys.weightGoal) {
+            weightGoalTextField.text = weightGoal
+        }
+        if let age = loadDataFromKeychain(forKey: KeychainKeys.age) {
+            ageTextField.text = age
+        }
+        if let genderIndex = loadDataFromKeychain(forKey: KeychainKeys.gender) {
+            genderSegmentedControl.selectedSegmentIndex = Int(genderIndex) ?? 0
+        }
+        if let activityLevelIndex = loadDataFromKeychain(forKey: KeychainKeys.activityLevel) {
+            activityLevelSegmentedControl.selectedSegmentIndex = Int(activityLevelIndex) ?? 0
+        }
+        
+        updateRecommendedCalories()
+    }
     
     private func updateRecommendedCalories() {
         guard let ageText = ageTextField.text,
@@ -290,18 +264,27 @@ class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, Pro
     }
     
     private func saveUserInput() {
-        let defaults = UserDefaults.standard
-        defaults.set(nameTextField.text, forKey: UserDefaultsKeys.name)
-        defaults.set(weightTextField.text, forKey: UserDefaultsKeys.weight)
-        defaults.set(weightGoalTextField.text, forKey: UserDefaultsKeys.weightGoal)
-        defaults.set(ageTextField.text, forKey: UserDefaultsKeys.age)
-        defaults.set(genderSegmentedControl.selectedSegmentIndex, forKey: UserDefaultsKeys.gender)
-        defaults.set(activityLevelSegmentedControl.selectedSegmentIndex, forKey: UserDefaultsKeys.activityLevel)
-        defaults.synchronize()
+        if let username = nameTextField.text {
+            saveDataToKeychain(value: username, forKey: KeychainKeys.name)
+        }
+        if let weight = weightTextField.text {
+            saveDataToKeychain(value: weight, forKey: KeychainKeys.weight)
+        }
+        if let weightGoal = weightGoalTextField.text {
+            saveDataToKeychain(value: weightGoal, forKey: KeychainKeys.weightGoal)
+        }
+        if let age = ageTextField.text {
+            saveDataToKeychain(value: age, forKey: KeychainKeys.age)
+        }
+        let gender = String(genderSegmentedControl.selectedSegmentIndex)
+        saveDataToKeychain(value: gender, forKey: KeychainKeys.gender)
+        
+        let activityLevel = String(activityLevelSegmentedControl.selectedSegmentIndex)
+        saveDataToKeychain(value: activityLevel, forKey: KeychainKeys.activityLevel)
     }
 
     private func saveCaloriesInput(calorieNeeds: Double) {
-        UserDefaults.standard.set(calorieNeeds, forKey: UserDefaultsKeys.dailyCalorieNeeds)
+        saveDataToKeychain(value: String(calorieNeeds), forKey: KeychainKeys.dailyCalorieNeeds)
     }
     
     private func toggleInputFieldsEnabled() {

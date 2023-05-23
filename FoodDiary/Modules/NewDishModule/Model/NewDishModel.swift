@@ -7,17 +7,11 @@ struct NewDishModel {
     var fats: Double = 0
     var carbs: Double = 0
     
-    init(dishName: String, cals: String, proteins: String, fats: String, carbs: String) {
+    init(dishName: String, cals: Double, proteins: Double, fats: Double, carbs: Double) {
         self.dishName = dishName
-        
-        guard let calsValue = Double(cals) else { return }
-        guard let proteinsValue = Double(proteins) else { return }
-        guard let fatsValue = Double(fats) else { return }
-        guard let carbsValue = Double(carbs) else { return }
-
-        self.cals = calsValue
-        self.proteins = proteinsValue
-        self.fats = fatsValue
-        self.carbs = carbsValue
+        self.cals = cals
+        self.proteins = fats
+        self.fats = fats
+        self.carbs = carbs
     }
 }

@@ -30,37 +30,43 @@ class DishChooserPresenter: DishChooserPresenterProtocol {
         self.meal = meal
     }
     
-    func fetchDishes() {
-        (masses, dishes) = CoreDataStack.shared.fetchDishesByMeal(meal: meal, toFetch: 20)
-    }
-    
-    
     lazy var fetchedResultsController = createFetchedResultsController(fetchRequest: CoreDataStack.shared.getSearchFetchRequest(),
         sortDescriptors: [CoreDataStack.shared.getSearchSortDescriptor()])
 
+    // Отображает вью выбора массы блюда
     func showAmount(row: Int, dish: Dishes) {
         guard let mealId = meal.id, let dishId = dish.id else { return }
         let dishesMeals = DishAmountModel(mass: 0, mealId: mealId, dishId: dishId)
         router.showDishAmount(pageTitle: dish.name ?? "", dishesMeals: dishesMeals)
     }
     
+    // Отображает вью создания нового блюда
     func goToNewDishCreation() {
         router.showNewDish()
     }
     
+    // По данному индексу возвращает блюдо из списка
     func getDishFromDishes(index: Int) -> Dishes {
-        return dishes[index]
+        dishes[index]
     }
     
+    // Возвращает количество блюд в массиве
     func getDishesCount() -> Int {
         dishes.count
     }
     
+    // Возвращает количество результатов фильтрации
     func getResultsCount() -> Int {
         fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
+    // Обрабатывает изменение текста в поле поиска
     func searchBarTextChanged(searchText: String) {
         CoreDataStack.shared.filterResults(for: searchText, fetchedResultController: fetchedResultsController)
+    }
+    
+    // Загружает блюда
+    func fetchDishes() {
+        (masses, dishes) = CoreDataStack.shared.fetchDishesByMeal(meal: meal, toFetch: 20)
     }
 }

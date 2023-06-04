@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
 
+    // Инициализирует assembly и router, показывает пользователю начальный экран
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let stack = CoreDataStack.shared
         let firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")

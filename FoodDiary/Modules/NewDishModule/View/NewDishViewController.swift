@@ -44,7 +44,8 @@ class NewDishViewController: UIViewController {
             carbsTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             carbsTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             addButton.topAnchor.constraint(equalTo: carbsTextField.bottomAnchor, constant: 16),
-            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButton.widthAnchor.constraint(equalToConstant: 150)
         ])
     }
     

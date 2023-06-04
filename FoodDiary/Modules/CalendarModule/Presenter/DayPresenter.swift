@@ -19,6 +19,7 @@ protocol DayPresenterProtocol: AnyObject {
     var nutsData: [CGFloat] { get set }
     var context: NSManagedObjectContext? { get set }
     var mealsArray: [String] { get set }
+    var selectedDate: Date { get set }
     init(router: RouterProtocol)
     func tapOnGear()
     func tapOnCell(indexPath: Int)
@@ -34,6 +35,7 @@ class DayPresenter: DayPresenterProtocol {
     var nutsData: [CGFloat] = [0, 0, 0, 0]
     var context: NSManagedObjectContext?
     var mealsArray: [String]
+    var selectedDate: Date = Date()
     var router: RouterProtocol
     
     required init(router: RouterProtocol) {

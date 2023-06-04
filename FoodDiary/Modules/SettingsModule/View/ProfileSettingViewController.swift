@@ -80,6 +80,11 @@ class ProfileSettingsViewController: UIViewController, UIPickerViewDelegate, Pro
         view.addSubview(genderSegmentedControl)
         view.addSubview(activityLevelSegmentedControl)
         view.addSubview(recommendedCaloriesLabel)
+        weightTextField.isEnabled = false
+        weightGoalTextField.isEnabled = false
+        ageTextField.isEnabled = false
+        genderSegmentedControl.isEnabled = false
+        activityLevelSegmentedControl.isEnabled = false
     }
     
     func setupConstraints() {

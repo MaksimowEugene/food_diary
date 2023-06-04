@@ -53,7 +53,12 @@ class CalendarView: UIView {
 
     public func setupView() {
         setupViews()
+        datePicker.date = presenter.selectedDate
         setupConstraints()
+    }
+    
+    func fetchData() {
+        presenter.fetchData(for: presenter.selectedDate)
     }
     
     private func setupViews() {
@@ -94,9 +99,6 @@ class CalendarView: UIView {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.tapOnCell(indexPath: indexPath.row)
     }
-    func fetchData() {
-        presenter.fetchData(for: datePicker.date)
-    }
     
     internal func setupDataSource() {
         var snapshot = dataSource.snapshot()
@@ -110,7 +112,8 @@ class CalendarView: UIView {
     }
     
     @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
-        presenter.fetchData(for: sender.date)
+        presenter.selectedDate = sender.date
+        presenter.fetchData(for: presenter.selectedDate)
         superview?.endEditing(true)
     }
     
